@@ -29,6 +29,7 @@ import {
   Text,
   Tooltip,
   VStack,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { BiCalendarHeart, BiTrashAlt, BiUnlink } from 'react-icons/bi';
@@ -130,10 +131,14 @@ const SettingsMenu: React.FC<SettingsMenuProps> = () => {
   }, []);
 
   if (!githubUsername || !githubRepo || !accessToken) return null;
+
+  const bgColor = useColorModeValue('gray.50', 'gray.800');
+  const color = useColorModeValue('gray.800', 'gray.50');
+
   return (
     <Menu size={'lg'} placement="bottom-end">
       <MenuButton as={IconButton} aria-label="Options" icon={<CiSettings />} variant="outline" />
-      <MenuList fontSize={'14px'}>
+      <MenuList fontSize={'14px'} bg={bgColor} color={color}>
         <HStack px={4} py={2}>
           <Avatar name={githubUsername} size="sm" />
           <VStack spacing={0} align="flex-start">
